@@ -5,7 +5,7 @@
 	<artifactId>cinema</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
+        <package1>JAR</package1>   
 	<properties>
 
 		<!-- Generic properties -->
