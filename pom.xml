@@ -336,8 +336,8 @@
 	<distributionManagement>
 	<repository>	
 		<id>nexus</id>
-		<name>maven-releases</name>
-		<url>http://localhost:8081/repository/maven-releases/</url>
+		<name>maven-releases_protected</name>
+		<url>http://localhost:8081/repository/Maven_Release_mike/</url>
 		</repository>
 		<snapshotRepository>
 		<id>nexus</id>
