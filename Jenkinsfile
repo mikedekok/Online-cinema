@@ -1,4 +1,3 @@
-Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
     tools {
@@ -13,11 +12,7 @@ pipeline {
                 sh 'mvn -Dmaven.test.failure.ignore=true clean package' 
                
             }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
-            }
+          
         }
     }
 }
