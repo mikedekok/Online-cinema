@@ -20,8 +20,8 @@ pipeline {
         
         stage ('Jmeter'){
 
-            steps {sh 'mvn tomcat7:run'
-                   sh  '''/home/kokm/Downloads/apache-jmeter-5.2.1/bin/jmeter.sh -n -t /home/kokm/Downloads/apache-jmeter-5.2.1/bin/Cinema.jmx -l test.jtl'''}
+            steps {
+                   sh '/home/kokm/Downloads/apache-jmeter-5.2.1/bin/jmeter.sh -n -t /home/kokm/Downloads/apache-jmeter-5.2.1/bin/Cinema.jmx -l test.jtl'}
         }
             
     }
