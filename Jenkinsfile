@@ -16,10 +16,7 @@ pipeline {
             steps {sh 'mvn -X -Dmaven.test.failure.ignore=true clean deploy'}
           
         }
-        stage ('Tomcat'){
-            
-            steps { sh 'mvn tomcat7:run'}
-        }
+       
         
         stage ('Jmeter'){
 
