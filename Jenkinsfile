@@ -17,8 +17,9 @@ pipeline {
           
         }
       stage('Run tests') {
-      
-          dir('Online-cinema/src/test/java/ba/pehli/cinema/test/') {
+                
+          steps{
+          dir('Online-cinema/src/test/java/ba/pehli/cinema/test/') 
             sh 'mvn clean test -Dwebdriver.type=chrome -Dwebdriver.chrome.driver=/usr/bin/chromedriver'
           }
       }
