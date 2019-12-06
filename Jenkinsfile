@@ -16,6 +16,13 @@ pipeline {
             steps {sh 'mvn -X -Dmaven.test.failure.ignore=true clean deploy'}
           
         }
+      stage('Run tests') {
+      
+          dir('Online-cinema/src/test/java/ba/pehli/cinema/test/') {
+            sh 'mvn clean test -Dwebdriver.type=chrome -Dwebdriver.chrome.driver=/usr/bin/chromedriver'
+          }
+      }
+   
        
         
         stage ('Jmeter'){
