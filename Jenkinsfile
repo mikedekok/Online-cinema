@@ -17,12 +17,6 @@ pipeline {
           
         }
       
-
-         stage ('Jmeter'){
-
-            steps {
-                   sh '/home/kokm/Downloads/apache-jmeter-5.2.1/bin/jmeter.sh -n -t /home/kokm/Devops/Cinema.jmx -l /home/kokm/Devops/test.jtl'}
-        }
             
     }
 }
