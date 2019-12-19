@@ -4,7 +4,7 @@
 	<groupId>org.springframework.samples.service.service</groupId>
 	<artifactId>cinema</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 
