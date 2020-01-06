@@ -20,7 +20,7 @@ pipeline {
         stage ('Build') {
             
             steps {sh 'mvn -X -Dmaven.test.failure.ignore=true clean deploy'}
-                  {sh 'ansible-playbook /home/kokm/task.yaml'}
+                  {sh 'sudo ansible-playbook /home/kokm/task.yaml'}
 
           
         }
