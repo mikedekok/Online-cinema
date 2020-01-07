@@ -38,6 +38,7 @@ pipeline { environment {
         docker.withRegistry('',registryCredential){dockerImage.push()}
         }
 }
+    }
      
         stage ('launch & provision'){
         
