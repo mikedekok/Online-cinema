@@ -1,4 +1,6 @@
-pipeline {
+pipeline { environment {
+    registry = "kokm3/cinema_final"
+    registryCredential = 'dockerpass'}
     agent any
     tools {
         maven 'Maven'
@@ -19,9 +21,29 @@ pipeline {
         
         stage ('Build') {
             
-            steps {sh 'mvn -X -Dmaven.test.failure.ignore=true clean deploy'}
-                  {sh 'sh sudo chown root:jenkins /home/kokm/task.yaml'}
-                  {sh 'ansible-playbook /home/kokm/task.yaml'}
+            steps {sh 'mvn -X -Dmaven.test.failure.ignore=true build'}
+                      
+        }
+        stage('Building image'){
+      steps{
+        script{
+          dockerImage = docker.build "kokm3/cinema_final"
+        }
+}
+}
+
+    stage('Deploy image'){
+      steps{
+        script{
+        docker.withRegistry('',registryCredential){dockerImage.push()}
+        }
+}
+     
+        stage ('launch & provision'){
+        
+          steps
+                 {sh 'sh sudo chown root:jenkins /home/kokm/task.yaml'}
+                 {sh 'ansible-playbook /home/kokm/task.yaml'}
 
           
         }
