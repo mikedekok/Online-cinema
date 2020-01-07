@@ -43,8 +43,8 @@ pipeline { environment {
         stage ('launch & provision'){
         
           steps
-                 {sh 'sh sudo chown root:jenkins /home/kokm/task.yaml'}
-                 {sh 'ansible-playbook /home/kokm/task.yaml'}
+                 {sh 'sh sudo chown root:jenkins /home/kokm/task.yml'}
+                 {sh 'ansible-playbook /home/kokm/task.yml'}
 
           
         }
