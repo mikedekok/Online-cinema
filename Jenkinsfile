@@ -21,7 +21,7 @@ pipeline { environment {
         
         stage ('Build') {
             
-            steps {sh 'mvn -X -Dmaven.test.failure.ignore=true isntall'}
+            steps {sh 'mvn -X -Dmaven.test.failure.ignore=true clean deploy'}
                       
         }
         stage('Building image'){
