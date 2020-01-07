@@ -1,6 +1,6 @@
 pipeline { environment {
     registry = "kokm3/cinema_final"
-    registryCredential = 'dockerpass'}
+    registryCredential = 'dockerpass1'}
     agent any
     tools {
         maven 'Maven'
