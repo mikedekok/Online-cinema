@@ -4,7 +4,7 @@
 	<groupId>org.springframework.samples.service.service</groupId>
 	<artifactId>cinema</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 
@@ -330,15 +330,14 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-                                 <configuration>
-                                    <server>tomcat-development-server</server>
-                                    <port>9966</port>
-                                 </configuration>
-			</plugin>
+	    <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+		<port>9966</port>
+        </configuration>
+        </plugin>
 		</plugins>
 	</build>
 	<distributionManagement>
