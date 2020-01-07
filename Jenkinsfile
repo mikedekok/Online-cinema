@@ -27,7 +27,7 @@ pipeline { environment {
         stage('Building image'){
       steps{
         script{
-          dockerImage = docker.build "kokm3/cinema_final"
+          dockerImage = docker.build registry + ":$Build_number"
         }
 }
 }
