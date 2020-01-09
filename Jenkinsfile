@@ -44,7 +44,7 @@ pipeline { environment {
         
           steps
                  {sh 'sh sudo chown root:jenkins /home/kokm/task.yml'}
-                 {sh 'ansible-playbook /home/kokm/task.yml'}
+                 {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/task.yml'}
 
           
         }
