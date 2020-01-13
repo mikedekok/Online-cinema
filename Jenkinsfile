@@ -29,7 +29,17 @@ pipeline { environment {
         script{
           dockerImage = docker.build registry + ":$Build_number"
         }
+         
+          
 }
+            node { 
+                def newFile = new File('/home/kokm/buildnumber.txt')
+                newFile.createNewFile() 
+                def buildnumber =  ${manager.build.getEnvironment(manager.listener)['BUILD_NUMBER']
+                f.append(buildnumber)
+}
+            
+                                 
 }
 
     stage('Deploy image'){
