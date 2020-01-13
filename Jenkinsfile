@@ -35,11 +35,9 @@ pipeline { environment {
             stage ("getting buildnumber") {
                 steps{
                     script{
-                def newFile = new File('/home/kokm/buildnumber.txt')
-                newFile.createNewFile() 
-                def buildnumber = manager.build.getEnvironment(manager.listener)['BUILD_NUMBER']
-                f.append(buildnumber)
+                 buildnumber = ${manager.build.getEnvironment(manager.listener)['BUILD_NUMBER']}
                     }}}
+               
             
                               
 
