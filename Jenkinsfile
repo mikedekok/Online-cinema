@@ -35,7 +35,7 @@ pipeline { environment {
             stage ("getting buildnumber") {
                 steps{
                     script{
-                 buildnumber = ${manager.build.getEnvironment(manager.listener)['BUILD_NUMBER']}
+                 buildnumber = manager.build.getEnvironment(manager.listener)['BUILD_NUMBER']
                     }}}
                
             
