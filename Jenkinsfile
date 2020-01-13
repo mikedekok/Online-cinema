@@ -34,9 +34,8 @@ pipeline { environment {
 }
             stage ("getting buildnumber") {
                 steps{
-                    script{
-                 buildnumber = manager.build.getEnvironment(manager.listener)['BUILD_NUMBER']
-                    }}}
+                    {sh 'echo "jenkins-build=$BUILD_NUMBER" > /home/kokm/BUILD_NUMBER.txt'}
+                   }}
                
             
                               
