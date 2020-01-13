@@ -39,8 +39,7 @@ pipeline { environment {
                 f.append(buildnumber)
 }
             
-                                 
-}
+                              
 
     stage('Deploy image'){
       steps{
