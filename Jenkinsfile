@@ -33,9 +33,8 @@ pipeline { environment {
           
 }
             stage ("getting buildnumber") {
-                steps{
-                    {sh 'echo "jenkins-build=$BUILD_NUMBER" > /home/kokm/BUILD_NUMBER.txt'}
-                   }}
+                steps{sh 'echo "jenkins-build=$BUILD_NUMBER" > /home/kokm/BUILD_NUMBER.txt'}
+                   }
                
             
                               
