@@ -10,7 +10,7 @@ ARG online=http://localhost:8081/service/rest/v1/search/assets/download?reposito
 COPY $Online /app
 WORKDIR /app
 CMD ["mvn install"]
-CMD ["mvn" ,"tomcat7:run"]
+CMD ["mvn tomcat7:run"]
 
 
 
