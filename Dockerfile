@@ -9,7 +9,7 @@ EXPOSE 9966
 ARG online=http://localhost:8081/service/rest/v1/search/assets/download?repository=maven-public&group=org.springframework.samples.service.service&name=cinema&maven.extension=jar&sort=version&direction=desc
 COPY $Online /app
 WORKDIR /app
-CMD ["mvn" ,"mvn:install"]
+CMD ["mvn install"]
 CMD ["mvn" ,"tomcat7:run"]
 
 
