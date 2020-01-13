@@ -34,10 +34,7 @@ pipeline { environment {
       } 
           
 }
-               
-            
-                              
-
+          
     stage('Deploy image'){
       steps{
         script{
@@ -46,16 +43,20 @@ pipeline { environment {
 }
     }
      
-        stage ('launch & provision'){
+        stage ('launch ec2 & install python & docker'){
         
           steps
                  {sh 'sh sudo chown root:jenkins /home/kokm/task.yml'}
                  {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/task.yml'}
-                
+        }
+        stage ('pull & run image'){   
+          steps
+                {sh 'sh sudo chown root:jenkins /home/kokm/testing.yml'}
+                {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/testing.yml'}
           
         }
       
-            
+                
     }
 }
        
