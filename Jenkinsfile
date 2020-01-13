@@ -1,6 +1,8 @@
 pipeline { environment {
     registry = "kokm3/cinema_final"
-    registryCredential = 'dockerpass1'}
+    registryCredential = 'dockerpass1'
+    build = '$Build_number'
+}
     agent any
     tools {
         maven 'Maven'
@@ -32,9 +34,6 @@ pipeline { environment {
       } 
           
 }
-            stage ("getting buildnumber") {
-                steps{sh 'echo "jenkins-build=$BUILD_NUMBER" > /home/kokm/BUILD_NUMBER.txt'}
-                   }
                
             
                               
@@ -52,7 +51,7 @@ pipeline { environment {
           steps
                  {sh 'sh sudo chown root:jenkins /home/kokm/task.yml'}
                  {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/task.yml'}
-
+                
           
         }
       
