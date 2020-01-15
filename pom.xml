@@ -329,7 +329,7 @@
 
 
 	<build>
-		<pluginManagement>
+		
 		<plugins>
 	    <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
@@ -340,7 +340,7 @@
         </configuration>
         </plugin>
 		</plugins>
-                </pluginManagement>
+                
 	</build>
 	<distributionManagement>
 	<repository>	
