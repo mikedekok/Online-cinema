@@ -47,7 +47,7 @@ pipeline { environment {
         
           steps
                  {sh 'sh sudo chown root:jenkins /home/kokm/task.yml'}
-                 {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/task.yml "test"'}
+                 {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/task.yml'}
         }
         stage ('play jmeter script for tag_Name_test instances'){
             
