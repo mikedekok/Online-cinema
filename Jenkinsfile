@@ -55,7 +55,7 @@ pipeline { environment {
             
             {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/testing.yml'}
             {sh 'export IP_new=$(<IP_new.txt'}
-            {sh 'sudo sed -i 's/'"$IP_old"'/'"$IP_new"'/'  /var/lib/jenkins/jobs/Jmeter/Cinema.jmx'}
+            {sh 'sudo sed -i s/"$IP_old"/"$IP_new"/  /var/lib/jenkins/jobs/Jmeter/Cinema.jmx'}
             {sh 'export IP_old=$IP_new'}
             {sh 'cd /opt/apache-jmeter-5.2.1/bin'}
             {sh 'jmeter.sh -Jjmeter.save.saveservice.output_format=csv -n -t /var/lib/jenkins/jobs/Jmeter/Cinema.jmx -l /var/lib/jenkins/jobs/Jmeter/test.csv'}
