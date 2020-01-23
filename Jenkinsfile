@@ -52,8 +52,7 @@ pipeline { environment {
         stage ('play jmeter script for tag_Name_test instances'){
             
           steps
-            
-            {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/testing.yml'}
+           
             {sh 'export IP_new=$(<IP_new.txt'}
             {sh 'sudo sed -i s/"$IP_old"/"$IP_new"/  /var/lib/jenkins/jobs/Jmeter/Cinema.jmx'}
             {sh 'export IP_old=$IP_new'}
