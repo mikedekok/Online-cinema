@@ -348,6 +348,6 @@
          <name>Internal repo</name>
          <url>/home/kokm/devops</url>
        </repository>
-   </distributionManagement
+	</distributionManagement>
 
 </project>
