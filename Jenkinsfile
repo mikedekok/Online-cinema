@@ -57,7 +57,13 @@ pipeline { environment {
             {sh 'sudo sed -i s/"$IP_old"/"$IP_new"/  /var/lib/jenkins/jobs/Jmeter/Cinema.jmx'}
             {sh 'export IP_old=$IP_new'}
             {sh 'sh /opt/apache-jmeter-5.2.1/bin/jmeter.sh -Jjmeter.save.saveservice.output_format=csv -n -t /var/lib/jenkins/jobs/Jmeter/Cinema.jmx -l /var/lib/jenkins/jobs/Jmeter/test.csv'}
-        }      
+        } 
+         stage ('Deploy application to production & Terminate Test Environment'){
+        
+          steps
+                 {sh 'sh sudo chown root:jenkins /home/kokm/terminate.yml'}
+                 {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/terminate.yml'}
+        }
       
                 
     }
