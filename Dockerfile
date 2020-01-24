@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:6
 RUN yum  -y install \	RUN yum -y update && \
         java-1.8.0-openjdk\	 yum -y install wget && \
         java-1.8.0-openjdk-devel	 yum -y install tar
