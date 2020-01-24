@@ -342,5 +342,12 @@
 		</plugins>
                 
 	</build>
+	<distributionManagement>
+       <repository>
+         <id>internal.repo</id>
+         <name>Internal repo</name>
+         <url>/home/kokm/devops</url>
+       </repository>
+   </distributionManagement
 
 </project>
