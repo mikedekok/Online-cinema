@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos
 RUN yum -y update && \
  yum -y install wget && \
  yum -y install tar
