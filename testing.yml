@@ -1,0 +1,31 @@
+- name: Configure instance
+  hosts: tag_Name_prod
+  connection: ssh
+  remote_user: ec2-user
+  gather_facts: yes
+  become: True
+  become_user: root
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Pull default Docker image
+      docker_image:
+        name: "{{ default_container_image }}"
+        source: pull
+  # Creates the number of containers defined by the variable create_containers, using values from vars file
+    - name: Create default containers
+      docker_container:
+        name: "{{ default_container_name }}"
+        image: "{{ default_container_image }}"
+        ports: "9966:9966"
+        state: started
+
+ 
+        
+  
+
+
+
+
+
+    

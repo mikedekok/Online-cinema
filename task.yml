@@ -1,0 +1,134 @@
+
+- name: ec2 launcher
+  hosts: localhost
+  connection: local
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: create security group
+      ec2_group:
+        name: ansible
+        description: Rules Allowing Traffic on port 22 and 80
+        region: us-east-2
+        aws_access_key: '{{ aws_access_key }}'
+        aws_secret_key: '{{ aws_secret_access_key }}'
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 9966
+            to_port: 9966
+            cidr_ip: 0.0.0.0/0 
+        rules_egress:
+          - proto: all
+            cidr_ip: 0.0.0.0/0
+
+    - name: lauching ec2
+      ec2:
+        instance_type: t2.micro
+        key_name: ansible
+        image: ami-0c64dd618a49aeee8
+        region: us-east-2
+        aws_access_key: '{{ aws_access_key }}'
+        aws_secret_key: '{{aws_secret_access_key}}'
+        group: ansible
+        count: 1
+        vpc_subnet_id: subnet-9bcb9ae1
+        wait : yes
+        assign_public_ip: yes
+        instance_tags:
+            Name: test
+            
+      register: ec2
+      
+    - name: Add new instance to host group
+      add_host:
+        name: "{{ item.public_ip }}"
+        groupname: test
+      with_items: '{{ec2.instances}}'
+    
+
+    - name: Wait for SSH to come up
+      wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=1000 state=started
+      with_items: '{{ec2.instances}}'
+
+- name: Configure instance
+  hosts: test
+  connection: ssh
+  remote_user: ec2-user
+  gather_facts: yes    
+  become: True
+  become_user: root
+  vars_files:
+    - vars.yml
+
+  tasks:
+
+    - name: Install yum utils
+      yum:
+        name: yum-utils
+        state: latest
+
+    - name: Install device-mapper-persistent-data
+      yum:
+        name: device-mapper-persistent-data
+        state: latest
+
+    - name: Install lvm2
+      yum:
+        name: lvm2
+        state: latest
+
+    - name: Install Docker
+      yum: name=docker state=latest
+
+    - name: Install pip module
+      yum: name=python-pip state=latest
+
+    - name: Install Python docker module
+      pip: name=docker state=latest
+
+    - name: Install boto3
+      pip: name=boto3 state=present
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Change docker.sock ownership
+      file:
+        path: /var/run/docker.sock
+        mode: '0777'
+  
+    - name: Pull default Docker image
+      docker_image:
+        name: "{{ default_container_image }}"
+        source: pull
+  # Creates the number of containers defined by the variable create_containers, using values from vars file
+    - name: Create default containers
+      docker_container:
+        name: "{{ default_container_name }}"
+        image: "{{ default_container_image }}"
+        ports: "9966:9966"
+        state: started 
+
+- name: ec2 launcher
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: fetch ip
+      shell:
+        cmd: ./ec2.py --list --refresh-cache | grep -A 1 "tag_Name_test" | sed -n '2,2p' | sed 's|["]||g'| tr -d " \t\n\r"  > /home/kokm/IP_new.txt
+        chdir: /etc/ansible/
+      
+
+
+ 
+
+ 

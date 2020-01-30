@@ -1,0 +1,27 @@
+
+
+
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+    - /home/kokm/vars.yml
+  tasks:
+
+    - name: Get Subnet ID and AMI ID from existing server.
+      ec2_instance_facts:
+        region: us-east-2
+        aws_access_key: '{{ aws_access_key }}'
+        aws_secret_key: '{{aws_secret_access_key}}'
+        filters:
+          tag:Name: test
+      register: ec2_instance_facts
+ 
+    - name: terminate test
+      ec2:
+        aws_access_key: '{{ aws_access_key }}'
+        aws_secret_key: '{{aws_secret_access_key}}' 
+        ec2_region: us-east-2
+        state: stopped
+        instance_tags:
+          Name: test
+
