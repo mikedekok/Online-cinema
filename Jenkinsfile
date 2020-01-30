@@ -63,6 +63,7 @@ pipeline { environment {
           steps
               
                  {sh 'ansible-playbook -vvvv --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/testing.yml'}
+                 {sh 'ansible-playbook -vvvv --private-key=/home/kokm/Downloads/yuqi.pem /home/kokm/terminate.yml'}
         }
       
                 
