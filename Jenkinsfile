@@ -47,7 +47,7 @@ pipeline { environment {
         
           steps
                 
-                 {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem task.yml'}
+                 {sh 'ansible-playbook --private-key=/home/kokm/Downloads/yuqi.pem https://raw.githubusercontent.com/mikedekok/Online-cinema/master/task.yml'}
         }
         stage ('play jmeter script for tag_Name_test instances'){
             
