@@ -17,7 +17,7 @@ ADD /home/kokm/.ssh/my_aws /root/.ssh/my_aws
 
 # Create known_hosts
 RUN touch /root/.ssh/known_hosts
-ssh-keyscan github.com >> /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 WORKDIR /
 RUN git clone git@github.com:mikedekok/Online-cinema.git
 WORKDIR /Online-cinema
