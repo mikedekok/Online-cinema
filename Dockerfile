@@ -4,11 +4,23 @@ RUN yum -y update && \
  yum -y install tar
 RUN yum install -y \
    java-1.8.0-openjdk \
-   java-1.8.0-openjdk-devel
+   java-1.8.0-openjdk-devel\
+   git
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk/
 RUN yum -y install maven
-COPY . /OnlineCinema
-WORKDIR /OnlineCinema
+RUN mkdir /root/.ssh/
+
+# Copy over private key, and set permissions
+# Warning! Anyone who gets their hands on this image will be able
+# to retrieve this private key file from the corresponding image layer
+ADD /home/kokm/.ssh/my_aws /root/.ssh/my_aws
+
+# Create known_hosts
+RUN touch /root/.ssh/known_hosts
+ssh-keyscan github.com >> /root/.ssh/known_hosts
+WORKDIR /
+RUN git clone git@github.com:mikedekok/Online-cinema.git
+WORKDIR /Online-cinema
 CMD ["mvn","clean"]
 EXPOSE 9966
 CMD ["mvn","tomcat7:run"]
