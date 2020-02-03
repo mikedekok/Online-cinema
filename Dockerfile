@@ -8,9 +8,6 @@ RUN yum install -y \
    git
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk/
 RUN yum -y install maven
-# Copy over private key, and set permissions
-# Warning! Anyone who gets their hands on this image will be able
-# to retrieve this private key file from the corresponding image layer
 COPY . /Online-Cinema
 WORKDIR /Online-Cinema
 CMD ["mvn","clean"]
