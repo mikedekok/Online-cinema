@@ -13,7 +13,7 @@ RUN mkdir /root/.ssh/
 # Copy over private key, and set permissions
 # Warning! Anyone who gets their hands on this image will be able
 # to retrieve this private key file from the corresponding image layer
-ADD /home/kokm/.ssh/my_aws /root/.ssh/my_aws
+COPY /home/kokm/.ssh/my_aws /root/.ssh/my_aws
 
 # Create known_hosts
 RUN touch /root/.ssh/known_hosts
