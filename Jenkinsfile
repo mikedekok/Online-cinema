@@ -32,9 +32,14 @@ pipeline { environment {
           dockerImage = docker.build registry + ":$Build_number"
         }
       } 
+            
           
 }
-          
+          stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
     stage('Deploy image'){
       steps{
         script{
