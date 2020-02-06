@@ -1,0 +1,6 @@
+[submodule "filebeat-demo"]
+	path = filebeat-demo
+	url = https://github.com/rav94/filebeat-demo
+[submodule "file"]
+	path = file
+	url = https://github.com/rav94/filebeat-demo
